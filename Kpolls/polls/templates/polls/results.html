@@ -1,0 +1,86 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/results style.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta http-equiv="refresh" content="10" />-->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Muli|Raleway|Merriweather+Sans|Montserrat|Acme|Titan+One|Work+Sans|Roboto|Lemonada|Galada|Permanent+Marker|Amatic+SC|Fredoka+One|Bangers">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <!--gets the total votes of the specific prompt (poll)-->
+    {% for key, value in namesandvotes.items %}
+    {% if key == prompt.prompt_text %}
+    <script>
+        var totalvotes = {{ value }};
+    </script>
+    {% endif %}
+    {% endfor %}
+
+    <header>
+        <div class="page-header">
+            <h1>RESULTS</h1>
+        </div>
+    </header>
+
+    <div id="content-wrapper">
+        <div class="space"></div>
+        <div class="results-container">
+            <br>
+            <!-- decides whether to display the green ongoing or red ended circle based on prompt.ended -->
+            {% if prompt.ended == False %}
+            <i class="fa fa-circle ongoing"></i>
+            {% elif prompt.ended == True %}
+            <i class="fa fa-circle ended"></i>
+            {% endif %}
+
+            <h1 class="prompt-name-results">Results of the '{{ prompt.prompt_text }}' poll</h1>
+            <br>
+            <p id="totvotes"></p>
+            <ul>
+                <!--gets the choice set of the specific prompt and orders them from highest vote count to lowest.-->
+                {% for choice in prompt.choice_set.all|dictsortreversed:"votes" %}
+                <li>
+                    <div class="item-text"><span>{{ choice.choice_text }}</span></div>
+                    <div class="vote-percent">
+                        <span id="pcent{{ forloop.counter }}"></span>
+                    </div>
+                    <div class="vote-bar-container">
+                        <div class="vbar">
+                            <div id="{{ forloop.counter }}" class="vote-bar"></div>
+                        </div>
+                        <span>{{ choice.votes }} Vote{{ choice.votes|pluralize }}</span>
+                    </div>
+                    <script>
+                    var totalpercent = ({{ choice.votes }}/totalvotes) * 100;
+                    var tot = totalpercent.toString();
+                    document.getElementById("{{ forloop.counter }}").style.width = tot + "%";
+                    document.getElementById("{{ forloop.counter }}").style.backgroundColor = "#EC7063";
+                    document.getElementById("pcent{{ forloop.counter }}").innerHTML = (Math.round(10 * tot)/10).toFixed(1).toString() + "%";
+                    document.getElementById("totvotes").innerHTML = "total votes: " + totalvotes.toString();
+                    </script>
+                    <br>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="space"></div>
+        {% if prompt.ended == False %}
+        <form action="{% url 'polls:prompt_detail' prompt.slug %}">
+            {% csrf_token %}
+            <div class="submit-bt-container"><input type="submit" value="Vote Again?" id="submit-bt" onclick="this.disabled=true;this.form.submit();"></div>
+        </form>
+        {% endif %}
+        <div class="index-link"><a href="{% url 'polls:pollsindex' %}">Take me to the polls index</a></div><br>
+
+    </div>
+    <div class="space"></div>
+    <div class="footer-holder">
+        <footer>
+            <h1>KPOLLS</h1>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+body, html {
+    color: black;
+    margin: 0px 0px;
+    font-family: "Raleway", serif;
+    font-weight: lighter;
+    background-color: #EAFAF1; /*#A3E4D7  #D1F2EB   #F5CBA7   #F9E79F         #EAFAF1         #F4ECF7  #F8F9F9   #F9E79F*/
+    width: 100%;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+header {
+    font-family: "Titan One";
+    color: white;
+    font-weight: 900;
+    background-color: #1C2833;
+    border: 5px solid #1C2833;
+    width: inherit;
+    height: auto;
+    max-height: 300px;
+    text-align: center;
+    text-shadow: 5px 10px 10px grey;
+}
+
+    header h1 {
+        font-weight: 900;
+    }
+
+.page-header {
+    font-size: 50px;
+}
+
+
+#content-wrapper {
+    text-align: center;
+    height: auto;
+    min-height: 1000px;
+}
+
+.space {
+    height: 100px;
+}
+
+#poll-container {
+    background-color: white;
+    border: 2px solid #F2F4F4;
+    border-radius: 30px;
+    width: 500px;
+    margin: auto;
+    height: auto;
+    min-height: 500px;
+    padding: 20px;
+    box-shadow: 2px 2px grey;
+}
+
+.fa.fa-star {
+    float: left;
+    color: purple;
+}
+
+.prompt-name {
+    font-family: "Titan One";
+    font-weight: 100;
+    color: #1C2833;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+    /*text-decoration: underline wavy orange;*/
+}
+
+.choices-container  {
+    font-family: "Amatic SC";
+    font-weight: 900;
+    font-size: 30px;
+    text-align: left;
+    padding-left: 50px;
+    height: auto;
+    line-height: 40px;
+    letter-spacing: 2px;
+}
+
+.choice-op:hover {
+    opacity: 0.7;
+}
+
+.submit-bt-container {
+    text-align: center;
+    width: 50%;
+    margin-left: 85px;
+}
+
+#submit-bt {
+    padding: 5px;
+    width: 80px;
+    border: 2px solid #82E0AA;
+    border-radius: 10px;
+    font-family: "Titan One";
+    font-size: 15px;
+    color: white;
+    background-color: #82E0AA;
+    text-transform: uppercase;
+    box-shadow: 1px 1px gray;
+}
+
+    #submit-bt:hover {
+        cursor: pointer;
+    }
+
+    #submit-bt:active {
+        box-shadow: none;
+        transform: translateY(2px);
+    }
+
+    #submit-bt:focus {
+        outline: none;
+    }
+
+.footer-holder {
+    width: 100%;
+    height: 125px;
+    position: relative;
+    border: 1px solid #1C2833;
+}
+
+footer {
+    height: auto;
+    width: inherit;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: #1C2833;
+    margin-right: 0px;
+}
+
+    footer h1 {
+        color: white;
+        font-family: "Titan One";
+        font-size: 50px;
+        text-align: center;
+    }
+
+@media only screen and (max-width: 638px) {
+    #poll-container {
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    #poll-container {
+        width: 300px;
+    }
+
+    .submit-bt-container {
+        text-align: center;
+        width: 50%;
+        margin-left: 40px;
+    }
+
+
+}
+
+@media only screen and (max-width: 360px) {
+    #poll-container {
+        width: 250px;
+    }
+
+    .submit-bt-container {
+        text-align: center;
+        width: 50%;
+        margin-left: 25px;
+    }
+
+
+}
+
+@media only screen and (max-width: 414px) {
+    #poll-container {
+        width: 270px;
+    }
+
+    .submit-bt-container {
+        text-align: center;
+        width: 50%;
+        margin-left: 25px;
+    }
+
+
+}

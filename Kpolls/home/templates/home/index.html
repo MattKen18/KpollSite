@@ -1,0 +1,28 @@
+<html>
+<head>
+</head>
+<body>
+    <h1>Hello World. This is the home page.</h1>
+    <h1>Song of the day.</h1>
+    <h4> {{ re.song }} by {{ re.artist }}</h4>
+
+    {% for choice in Choices %}
+        <p>{{ choice }}</p>
+    {% endfor %}
+    <h4>Kpolls top 20</h4>
+    {% for artist in artist_names %}
+        <p> {{ artist }}</p>
+        {% for choice, vote in choicevotes.items %}
+            <p>{{choice}} --- {{vote}}</p>
+            {% if choice == artist %}
+                <p>choice --- vote</p>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    <ul>
+    {% for poll in polls %}
+    <li> {{ poll.prompt_text }} </li>
+    {% endfor%}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/detail style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Muli|Raleway|Merriweather+Sans|Montserrat|Acme|Titan+One|Work+Sans|Roboto|Lemonada|Galada|Permanent+Marker|Amatic+SC|Fredoka+One">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <div class="page-header">
+            <h1>VOTE</h1>
+        </div>
+    </header>
+    <div id="content-wrapper">
+        <div class="space"></div>
+        <div id="poll-container">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <h1 class="prompt-name">{{ prompt.prompt_text }}</h1>
+            <br>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            <div class="choices-container">
+                <form action="{% url 'polls:vote' prompt.slug %}" method="post">
+                    {% csrf_token %}
+                    {% for choice in prompt.choice_set.all %}
+                    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+                    <label for="choice{{ forloop.counter }}" class="choice-op">{{ choice.choice_text }}</label><br>
+                    {% endfor%}
+                    <br>
+                    <div class="submit-bt-container"><input type="submit" value="Vote" id="submit-bt" onclick="this.disabled=true;this.form.submit();"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="space"></div>
+    <div class="footer-holder">
+        <footer>
+            <h1>KPOLLS</h1>
+        </footer>
+    </div>
+</body>
+</html>
