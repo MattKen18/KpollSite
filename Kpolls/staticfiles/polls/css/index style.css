@@ -55,8 +55,22 @@ span {
     color: #ECFF01;
 }
 
+.introbg {
+    background-image: url('galaxy.jpg');
+}
+
+div.intro {
+    background-image: url('galaxy.jpg');
+}
+
 .intro p {
     font-size: 50px;
+}
+
+#welcome {
+    font-family: 'Galada';
+    font-size: 100px;
+    padding: 50px;
 }
 
 
@@ -97,6 +111,7 @@ span {
     border-bottom-right-radius: 200px;
     background-color: white;
     background-size: cover;
+
 }
 
 .poll-image {

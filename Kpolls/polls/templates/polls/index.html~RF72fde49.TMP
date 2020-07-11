@@ -1,0 +1,109 @@
+<html>
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'polls/index style.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Muli|Raleway|Merriweather+Sans|Montserrat|Acme|Titan+One|Work+Sans|Roboto|Lemonada|Galada">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="{% static 'js/index jsfile.js' %}"></script>
+</head>
+<body>
+    <header>
+        <div class="page-header">
+            <h1>POLLS</h1>
+        </div>
+    </header>
+    <div id="content-wrapper">
+        <!--<div class="space" style="height: 400px; background-color: white;"></div>--><!--#7EE6ED-->
+        <div class="daily-poll-heading-container"><h1 class="daily-poll-heading"><span>Daily</span> Poll</h1></div>
+        {% if prompt_of_the_day %}
+        {% for prompt in prompt_of_the_day %}
+        <div class="outer-container">
+            <div class="daily-poll-container left" id="dailypoll">
+            </div>
+            <div class="daily-poll-container right">
+                <p class="daily-prompt-text"><a href="{% url 'polls:prompt_detail' prompt.slug %}" class="daily-prompt-link">{{ prompt.prompt_text }}</a></p>
+                <p class="start-end-date">Started: {{ prompt.pub_date }} &nbsp Ending: {{ prompt.rem_date }}  (EST)</p>
+                <div class="vote-bt-container">
+                    <form action="{% url 'polls:prompt_detail' prompt.slug %}">
+                        <input type="submit" value="Vote" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            var i;
+            var promptlist = '{{ prompt.prompt_text }}'.split(" ");
+            console.log(promptlist);
+            for (i in promptlist) {
+                var n = '{{ artists }}'.includes(promptlist[i]);
+                if (n == true) {
+                    document.getElementById("dailypoll").style.backgroundImage = "url('/static/polls/images/" + promptlist[i] + ".jpg')";
+                }
+            }
+        </script>
+        {% endfor %}
+        {% else %}
+        <p class="no-poll">No polls available.</p>
+        {% endif %}
+
+        <div class="space after" style="background-color: #1C0321;"></div>
+
+        <div class="ending-polls-heading-container"><h1 class="ended-polls-heading">Ended Polls</h1></div>
+        {% if past_prompts %}
+
+        <div class="ended-polls-container">
+            <br>
+            <ul>
+                {% for prompt in past_prompts %}
+                <li id="poll {{ forloop.counter }}">
+                    <div id="poll-image {{ forloop.counter }}" class="poll-image"></div>
+                    <div class="poll-right">
+                        <p class="prompt-name"><a id="poll-text{{ forloop.counter }}" href="{% url 'polls:results' prompt.slug %}">{{ prompt }}</a></p>
+                        <p class="dates" style="font-size: 10px; transform: none;">Ended: {{ prompt.rem_date }} (EST)</p>
+                        <div class="results-bt-container">
+                            <form action="{% url 'polls:results' prompt.slug %}">
+                                <input type="submit" value="Results" />
+                            </form>
+                        </div><br>
+                    </div>
+                    <script>
+                        var i;
+                        var promptlist = '{{ prompt.prompt_text }}'.split(" ");
+                        for (i in promptlist) {
+                            var n = '{{ artists }}'.includes(promptlist[i]);
+                            if (n == true) {
+                                document.getElementById("poll-image {{ forloop.counter }}").style.backgroundImage = "url('/static/polls/images/" + promptlist[i] + ".jpg')";
+                                document.getElementById("poll-image {{ forloop.counter }}").style.backgroundSize = "100% 100%";
+                                document.getElementById("poll-image {{ forloop.counter }}").style.backgroundRepeat = "no-repeat";
+
+                            }
+                        }
+                    </script>
+                    <!-- else add a default background image -->
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+        <p class="no-poll">There are no past polls.</p>
+        {% endif %}
+        <div class="space"></div>
+        <div class="submissions-textarea">
+            <form action="#" method="post">
+                {% csrf_token %}
+                <label for="submissions"> Tell us what polls you want to see next: <i class="fa fa-pencil" aria-hidden="true" style="text-decoration:underline black;"></i></label>
+                <textarea id="submissions" name="submissions" rows="3" cols="50"></textarea>
+                <input type="submit" value="Submit" class="submit">
+            </form>
+        </div>
+    </div>
+    <div class="space"></div>
+    <div class="footer-holder">
+        <footer>
+            <h1>KPOLLS</h1>
+        </footer>
+    </div>
+</body>
+</html>

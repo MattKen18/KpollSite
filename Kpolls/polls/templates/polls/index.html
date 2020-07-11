@@ -1,7 +1,8 @@
 <html>
 <head>
   {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'polls/index style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'polls/css/index style.css' %}">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Muli|Raleway|Merriweather+Sans|Montserrat|Acme|Titan+One|Work+Sans|Roboto|Lemonada|Galada">
@@ -16,9 +17,10 @@
     </header>
     <div id="content-wrapper">
         <!--<div class="space" style="height: 400px; background-color: white;"></div>--><!--#7EE6ED-->
+        <div class="introbg"></div>
         <div class="intro">
-            <p> Welcome to the Polls Index!</p>
-            <p> A new poll will be published everyday at 5:00 p.m. </p>
+            <h1 id="welcome" data-aos="fade-in" data-aos-duration="1000"> Welcome to the Polls Index!</h1>
+            <p> A new poll will be published everyday at 5:00 p.m. (EST)</p>
             <p> Scroll down to see today's daily poll </p>
             <i class="fa fa-arrow-down"></i>
         </div>
@@ -26,7 +28,7 @@
         {% if prompt_of_the_day %}
         {% for prompt in prompt_of_the_day %}
         <div class="outer-container">
-            <div class="daily-poll-container left" id="dailypoll">
+            <div class="daily-poll-container left" id="dailypoll" data-aos="fade-right" data-aos-duration="1000">
             </div>
             <div class="daily-poll-container right">
                 <p class="daily-prompt-text"><a href="{% url 'polls:prompt_detail' prompt.slug %}" class="daily-prompt-link">{{ prompt.prompt_text }}</a></p>
@@ -111,5 +113,9 @@
             <h1>KPOLLS</h1>
         </footer>
     </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
