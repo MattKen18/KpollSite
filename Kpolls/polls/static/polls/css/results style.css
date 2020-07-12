@@ -5,6 +5,7 @@ body, html {
     font-weight: lighter;
     background-color: #EAFAF1; /*#A3E4D7  #D1F2EB   #F5CBA7   #F9E79F         #EAFAF1         #F4ECF7  #F8F9F9   #F9E79F*/
     width: 100%;
+    position: relative;
 }
 
 a {
@@ -16,22 +17,27 @@ header {
     font-family: "Titan One";
     color: white;
     font-weight: 900;
-    background-color: #1C2833;
-    border: 5px solid #1C2833;
+    background-color: #1C0321;
     width: 100%;
-    height: auto;
+    min-height: 250px;
     max-height: 300px;
     text-align: center;
     text-shadow: 5px 10px 10px grey;
+    position: relative;
+    line-height: 250px;
 }
 
     header h1 {
         font-weight: 900;
+        height: 250px;
+        margin: 0;
     }
-
 
 .page-header {
     font-size: 50px;
+    position: absolute;
+    width: 100%;
+    margin: auto;
 }
 
 #content-wrapper {
@@ -41,6 +47,7 @@ header {
     margin: auto;
     padding: 0px 60px;
     width: 900px;
+    margin-bottom: 100px;
 }
 
 .space {
@@ -140,8 +147,7 @@ li:hover {
 
     .item-text span {
         line-height: normal;
-        font-size: 25px;
-        font-family: "Amatic SC";
+        font-size: 20px;
         font-weight: 900;
         letter-spacing: 2px;
     }
@@ -234,8 +240,8 @@ li:hover {
 .footer-holder {
     width: 100%;
     height: 125px;
-    position: relative;
-    border: 1px solid #1C2833;
+    position: absolute;
+    bottom: 0;
 }
 
 footer {
@@ -244,7 +250,7 @@ footer {
     position: absolute;
     bottom: 0px;
     left: 0px;
-    background-color: #1C2833;
+    background-color: #1C0321;
     margin-right: 0px;
 }
 
@@ -270,3 +276,127 @@ footer {
     0% {width: 0;}
 }
 
+
+@media only screen and (max-width: 768px) {
+
+    #content-wrapper {
+        width: 100%;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .results-container {
+        width: auto;
+        margin-left: 5px;
+        margin-right: 5px;
+        max-width: 95%;
+    }
+}
+
+@media only screen and ( max-width: 425px ) {
+
+    header h1 {
+        font-size: 70px;
+    }
+
+    .prompt-name-results {
+        font-size: 27px; 
+    }
+
+    #totvotes {
+        font-size: 10px;
+        padding-left: 3px;
+    }
+
+    .item-text {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .item-text span{
+        letter-spacing: 1px;
+        font-family: "Raleway";
+        font-size: 12px;
+    }
+
+    .vote-percent {
+        line-height: 60px;
+        width: 45px;
+    }
+    .vote-percent span {
+        font-size: 15px;
+    }
+
+    .vote-bar-container {
+        position: relative;
+        margin-left: 15px;
+        margin-right: 0;
+    }
+
+    .vote-bar, .vbar {
+        margin: 0;
+        height: 10px;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    .vote-bar-container span {
+        font-size: 8px;
+        position: absolute;
+        left: 5px;
+        top: 80%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+}
+
+@media only screen and (max-width: 375px) {
+
+    .fa.fa-circle.ongoing, .fa.fa-circle.ongoing::after {
+        font-size: 0.75em;
+    }
+
+    .item-text {
+        min-width: 170px;
+        max-width: 180px
+    }
+
+    .vote-bar-container {
+        margin-left: 7px;
+        margin-right: 0;
+    }
+}
+
+@media only screen and ( max-width: 320px ) {
+
+    header h1 {
+        font-size: 55px;
+    }
+
+    .prompt-name-results {
+        font-size: 23px;
+    }
+
+    li {
+        height: 40px;
+    }
+
+    .item-text {
+        min-width: 140px;
+        max-width: 150px
+    }
+
+    .item-text span {
+        font-size: 10px;
+    }
+
+    .vote-percent {
+        line-height: 40px;
+    }
+
+    .vote-percent span {
+        font-size: 10px;
+    }
+}
