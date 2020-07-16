@@ -4,4 +4,5 @@ from . import views
 app_name = 'home'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='homeindex'),
+    path('/vote/', views.heart_vote, name='heartvote'),
 ]

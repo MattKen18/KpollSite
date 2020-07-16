@@ -17,8 +17,8 @@ header {
     font-family: "Titan One";
     color: white;
     font-weight: 900;
-    background-color: #1C2833; /*#F34E4E*/
-    border: 5px solid #1C2833;
+    background-color: #1C0321; /*#F34E4E*/
+    border: 5px solid #1C0321;
     max-width: 100%;
     height: auto;
     max-height: 300px;
@@ -55,22 +55,60 @@ span {
     color: #ECFF01;
 }
 
-.introbg {
-    background-image: url('galaxy.jpg');
-}
-
-div.intro {
-    background-image: url('galaxy.jpg');
-}
-
 .intro p {
-    font-size: 50px;
+    font-family: "Titan One";
 }
 
-#welcome {
-    font-family: 'Galada';
+.intro p.head.first { 
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 30px;
+    width: 33%;
+    margin: auto;
+}
+
+span.st {
+    font-size: 15px;
+}
+
+.space.var {
+    height: 50px;
+}
+
+.intro p.head.second {
+    -webkit-animation-name: scrolldown;
+    -webkit-animation-duration: 1.2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes scrolldown {
+    0% {opacity: 0.5;}
+    100% {opacity: 1;}
+}
+
+.fa.fa-caret-down {
+    color: #00FFE4;
     font-size: 100px;
-    padding: 50px;
+    margin: auto;
+    opacity: 0.4;
+    animation-name: downarrow;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    -webkit-transition-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes downarrow {
+    0% {
+        -webkit-transform: translateY(0);
+        opacity: 0.3;
+    }
+
+    100% {
+        -webkit-transform: translateY(10px);
+        opacity: 0.9;
+    }
 }
 
 
@@ -176,15 +214,6 @@ div.intro {
             font-size: 61px;
         }
 
-/*
-    @keyframes prompt {
-    0% {color: #1C2833;}
-    25% {color: #F5B7B1;}
-    50% {color: #3498DB;}
-    100% {color: orange;}
-
-}*/
-
 .vote-bt-container {
     position: absolute;
     margin: auto;
@@ -237,6 +266,21 @@ div.intro {
     padding: 0px;
 }
 
+.scroll-to-bottom {
+    margin-left: 80%;
+}
+
+.fa.fa-arrow-circle-down {
+    font-size: 50px;
+    color: #7EE6ED;
+    opacity: 0.5;
+}
+
+.fa-arrow-circle-down:hover {
+    opacity: 0.9;
+    font-size: 52px;
+}
+
 
 .ended-polls-container {
     display: inline-block;
@@ -245,26 +289,30 @@ div.intro {
     background-color: white;
     padding-bottom: 20px;
     border-bottom: 1px solid lightgrey;
+    position: relative;
 }
     .ended-polls-container li {
+        z-index: 0;
         padding: 5px;
         display: flex;
         list-style: none;
         width: 45%;
         height: auto;
-        min-height: 200px;
+        min-height: 150px;
         margin-left: 20px;
         margin-bottom: 20px;
         border: 1px solid lightgrey;
         border-right: none;
         border-left: none;
-        /*border-radius: 10px;
-        box-shadow: 5px 5px gray;*/
         position: relative;
         float: left;
         background-color: white; /*#9DED90  #24FF00*/
         background-size: cover;
     }
+
+.poll-image {
+    width: 35%;
+}
 
 .poll-right {
     width: 55%;
@@ -283,8 +331,7 @@ div.intro {
 
         .poll-right p.prompt-name {
             overflow: auto;
-            margin-bottom: 20px;
-            font-size: 25px;
+            font-size: 20px;
             padding-top: 10px;
             min-height: 70px;
             max-height: 100px; /*can do this to the daily poll*/
@@ -292,7 +339,8 @@ div.intro {
 
         .poll-right a {
             font-family: "Titan One";
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            line-height: 20px; 
             color: #1C2833;
         }
         
@@ -392,7 +440,7 @@ div.intro {
 .footer-holder {
     height: 125px;
     position: relative;
-    border: 1px solid #1C2833;
+    border: 1px solid #1C0321;
 }
 
 footer {
@@ -401,7 +449,7 @@ footer {
     position: absolute;
     bottom: 0px;
     left: 0px;
-    background-color: #1C2833;
+    background-color: #1C0321;
 }
 
     footer h1 {
@@ -410,6 +458,66 @@ footer {
         font-size: 50px;
         text-align: center;
     }
+
+@media only screen and (min-width: 2560px) {
+
+    .space {
+        min-height: 200px;
+    }
+
+    .space.var {
+        min-height: 100px;
+    }
+    
+    .intro {
+        height: 500px;
+    }
+
+        .intro p.head.first {
+            font-size: 50px;
+        }
+
+    div.outer-container {
+        height: 550px;
+    }
+
+    div.daily-poll-container.right {
+        height: 500px;
+    }
+
+    a.daily-prompt-link {
+        font-size: 75px;
+    }
+
+    .daily-poll-container.right p.start-end-date {
+        font-size: 25px;
+    }
+
+    .ended-polls-container li {
+        height: 240px;
+    }
+
+    .poll-right p.prompt-name {
+        min-height: 150px;
+    }
+
+    .poll-right a {
+        font-size: 35px;
+    }
+
+    div.poll-right p.dates {
+        font-size: 20px;
+    }
+
+    form {
+        width: 550px;
+    }
+
+    .submissions-textarea textarea {
+        width: 500px;
+    }
+}
+
 
 @media only screen and (max-width: 1024px) {
 
@@ -498,6 +606,11 @@ footer {
 }
 
 @media only screen and (max-width: 425px) {
+
+    .intro p.head.first {
+        width: 80%;
+    }
+
     .daily-poll-heading-container {
         max-height: 200px;
     }
@@ -531,10 +644,17 @@ footer {
         transform: rotate(-2deg);
     }
 
+
     a.daily-prompt-link {
         font-size: 40px;
         letter-spacing: 2px;
         line-height: 43px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .daily-poll-container.right p.start-end-date {
+        word-spacing: 3px;
     }
 
     .space.after {
@@ -578,10 +698,35 @@ footer {
         }
 }
 
+@media only screen and (width: 411px) {
+    .intro p.head.first {
+        width: 100%;
+    }
+}
+
 @media only screen and (max-width: 375px) {
+
+    .intro p.head.first {
+        width: 100%;
+    }
 
     p.start-end-date {
         text-align: left;
+    }
+
+    .scroll-to-bottom {
+        margin-left: 65%;
+    }
+
+    .fa.fa-arrow-circle-down {
+        font-size: 30px;
+        color: #7EE6ED;
+        opacity: 0.4;
+    }
+
+    .fa-arrow-circle-down:hover {
+        opacity: 0.9;
+        font-size: 32px;
     }
 
     .poll-image {
@@ -594,13 +739,17 @@ footer {
         text-align: left;
     }
 
-        p.prompt-name {
-            width: 80%;
+        div.poll-right p.dates {
+            font-family: "Raleway";
         }
 
-        .prompt-name a {
-           letter-spacing: 1px;
-        }
+    p.prompt-name {
+        width: 80%;
+    }
+
+    .prompt-name a {
+        letter-spacing: 1px;
+    }
     #submissions {
         width: 100%;
     }

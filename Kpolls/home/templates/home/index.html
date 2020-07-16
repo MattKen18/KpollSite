@@ -1,28 +1,61 @@
 <html>
 <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/index style.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Muli|Raleway|Titan+One|Work+Sans|Roboto|Poppins">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <h1>Hello World. This is the home page.</h1>
-    <h1>Song of the day.</h1>
-    <h4> {{ re.song }} by {{ re.artist }}</h4>
+    <header>
+        <div class="logo">
+            <p><span class="k-style">K</span>PO<span class="l-style">LL</span>S</p>
+        </div>
+        <div class="header-right">
+            <p><a href="{% url 'home:homeindex' %}" class="home">Home</a></p>
+            <p><a href="{% url 'polls:pollsindex' %}" target="_blank" class="polls">Polls Index</a></p>
+            <p><a href="#" class="results">Results</a></p> <!--make this link to a page with all the ended polls-->
+        </div>
+    </header>
+    <div id="content-wrapper">
+        <div class="page-content-holder">
+            <div class="content daily-recommendation-container">
+                <div class="recommendation left">
+                    <!--<h1 class="rec-heading">Song of the day</h1>-->
+                    <h4 class="rec-song-artist"> {{ re.song }} by {{ re.artist }}</h4>
+                </div>
+                <div class="recommendation right">
+                    <form action="{% url 'home:heartvote' %}" method="post">
+                        {% csrf_token %}
+                        <div>
+                            <button type="submit" id="heart-button">
+                                <i class="fa fa-heart"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <p class="upvotes">{{ re.upvote }}<p>
+                </div>
+            </div>
+            <div class="content middle-content">
+                <div class="page-content">
+                    <ul>
+                        {% for poll in polls %}
+                        <li> {{ poll.prompt_text }} </li>
+                        {% endfor%}
+                    </ul>
+                </div>
+                <div class="artist-ranking">
+                    <h4> Kpolls Top 10 </h4>
+                    {% for artist in artist_names %}
+                    <p> {{ artist }} --- {{ artist.rank_votes }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
 
-    {% for choice in Choices %}
-        <p>{{ choice }}</p>
-    {% endfor %}
-    <h4>Kpolls top 20</h4>
-    {% for artist in artist_names %}
-        <p> {{ artist }}</p>
-        {% for choice, vote in choicevotes.items %}
-            <p>{{choice}} --- {{vote}}</p>
-            {% if choice == artist %}
-                <p>choice --- vote</p>
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
-    <ul>
-    {% for poll in polls %}
-    <li> {{ poll.prompt_text }} </li>
-    {% endfor%}
-    </ul>
+    </footer>
 </body>
 </html>
