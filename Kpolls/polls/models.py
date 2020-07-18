@@ -38,3 +38,20 @@ class Choice(models.Model):
 
         def __str__(self):
             return self.choice_text
+
+
+class Idolranking(models.Model):
+    rank_votes = models.CharField(max_length=200, default=0)
+    idol = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.idol
+
+class Submissions(models.Model):
+    user_recommendation = models.CharField(max_length=500)
+
+    class Meta:
+        verbose_name_plural = "Submissions"
+
+    def __str__(self):
+        return self.user_recommendation

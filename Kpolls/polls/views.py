@@ -1,15 +1,16 @@
 import random
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
-from .models import Prompt, Choice
-from home.models import Idolranking
+from .models import Prompt, Choice, Idolranking, Submissions
 from django.utils import timezone
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.contrib import messages
 
 # Create your views here.
 
 published_polls = Prompt.objects.filter(pub_date__lte=timezone.now())
+
 
 #this view is the polls homepage that has all the polls
 class IndexView(generic.ListView):
@@ -28,6 +29,22 @@ class IndexView(generic.ListView):
         daily_prompts = [prompt for prompt in published_polls if prompt not in past_prompts]
 
         artists = [name.idol for name in Idolranking.objects.all()]
+
+        # stuff from deleted home app
+
+        idols = Idolranking.objects.all()
+        polls = Prompt.objects.all()
+
+        for idol in idols:
+            try:
+                p = Choice.objects.get(choice_text__contains=idol.idol)
+            except:
+                pass
+            else:
+                idol.rank_votes = p.votes
+                idol.save()
+        context['artist_names'] = idols
+        # end of stuff from deleted home app
 
         for prompt in past_prompts:
             prompt.ended = True
@@ -93,3 +110,11 @@ def vote(request, slug):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:results', kwargs={'slug': slug}))
+
+def submissions(request): 
+    user_submission = Submissions(user_recommendation=request.POST['usubmissions'])
+    user_submission.save()
+
+    messages.success(request, 'Thank you for your suggestion. Have a nice day!')
+    return HttpResponseRedirect(reverse('polls:pollsindex'))
+    

@@ -7,12 +7,11 @@
   <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Muli|Raleway|Merriweather+Sans|Montserrat|Acme|Titan+One|Work+Sans|Roboto|Lemonada|Galada">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="{% static 'js/index jsfile.js' %}"></script>
 </head>
 <body>
     <header>
         <div class="page-header">
-            <h1>POLLS</h1>
+            <h1><span class="style k">K</span>PO<span class="style ls">LL</span>S</h1>
         </div>
     </header>
     <div id="content-wrapper">
@@ -43,12 +42,21 @@
         <script>
             var i;
             var promptlist = '{{ prompt.prompt_text }}'.split(" ");
+            var artistlist = [];
             console.log(promptlist);
             for (i in promptlist) {
                 var n = '{{ artists }}'.includes(promptlist[i]);
+                var len = artistlist.length;
                 if (n == true) {
-                    document.getElementById("dailypoll").style.backgroundImage = "url('/static/polls/images/" + promptlist[i] + ".jpg')";
+                    artistlist.push(promptlist[i]);
+                    console.log(artistlist);
                 }
+                if (len == 1) {
+                    document.getElementById("dailypoll").style.backgroundImage = "url('/static/polls/images/" + artistlist[0] + ".jpg')";
+                }
+            }
+            if (len != 1) {
+                document.getElementById("dailypoll").style.backgroundImage = "url('static/polls/images/background.jpg')";
             }
         </script>
         {% endfor %}
@@ -80,16 +88,29 @@
                     <script>
                         var i;
                         var promptlist = '{{ prompt.prompt_text }}'.split(" ");
+                        var artistlist = [];
+                        var defaultimg = "background";
+                        console.log(promptlist);
                         for (i in promptlist) {
                             var n = '{{ artists }}'.includes(promptlist[i]);
+                            var len = artistlist.length;
                             if (n == true) {
-                                document.getElementById("poll-image {{ forloop.counter }}").style.backgroundImage = "url('/static/polls/images/" + promptlist[i] + ".jpg')";
+                                artistlist.push(promptlist[i]);
+                                console.log(artistlist);
+                            }
+                            if (len == 1) {
+                                document.getElementById("poll-image {{ forloop.counter }}").style.backgroundImage = "url('/static/polls/images/" + artistlist[0] + ".jpg')";
                                 document.getElementById("poll-image {{ forloop.counter }}").style.backgroundSize = "100% 100%";
                                 document.getElementById("poll-image {{ forloop.counter }}").style.backgroundRepeat = "no-repeat";
-
                             }
                         }
+                        if (len != 1) {
+                            document.getElementById("poll-image {{ forloop.counter }}").style.backgroundImage = "url('/static/polls/images/background.jpg')";
+                            document.getElementById("poll-image {{ forloop.counter }}").style.backgroundSize = "100% 100%";
+                            document.getElementById("poll-image {{ forloop.counter }}").style.backgroundRepeat = "no-repeat";
+                        }
                     </script>
+
                     <!-- else add a default background image -->
                 </li>
                 {% endfor %}
@@ -99,11 +120,18 @@
         <p class="no-poll">There are no past polls.</p>
         {% endif %}
         <div class="space"></div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="user-recommendation"> {{ message }} </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <div class="submissions-textarea">
-            <form action="#" method="post">
+            <form action="{% url 'polls:pollrecommend' %}" method="post">
                 {% csrf_token %}
                 <label for="submissions"> Tell us what polls you want to see next: <i class="fa fa-pencil" aria-hidden="true" style="text-decoration:underline black;"></i></label>
-                <textarea id="submissions" name="submissions" rows="3" cols="50"></textarea>
+                <textarea id="submissions" name="usubmissions" rows="3" cols="50"></textarea>
                 <input type="submit" value="Submit" class="submit">
             </form>
         </div>
