@@ -30,8 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
-    'home.apps.HomeConfig',
+INSTALLED_APPS = [ # deleted home app
     'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',

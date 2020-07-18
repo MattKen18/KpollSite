@@ -36,6 +36,15 @@ header {
     font-size: 50px;
 }
 
+span.style {
+    display: inline-block;
+    color: #00FFE4;
+}
+
+    span.style.k {
+        -webkit-transform: rotate(-20deg);
+        /*letter-spacing: 3px;*/
+    }
 
 #content-wrapper {
     max-width: 100%;
@@ -44,6 +53,7 @@ header {
     min-height: 1500px;
     overflow: hidden;
 }
+
 
 .space {
     height: 100px;
@@ -201,7 +211,7 @@ span.st {
         width: 100%;
         font-size: 60px; /*43px*/
         font-family: "Titan One";
-        letter-spacing: 5px;
+        letter-spacing: 2px;
         word-spacing: 10px;
         line-height: 70px;
         color: white;
@@ -395,6 +405,27 @@ span.st {
         }
 
         /*style no poll*/
+
+ul.messages {
+    padding: 0;
+}
+
+li.user-recommendation {
+    list-style: none;
+    font-weight: 400;
+}
+
+    li.user-recommendation::before {
+        content: "\f004";
+        font-family: "FontAwesome";
+        color: pink;
+    }  
+    
+    li.user-recommendation::after {
+        content: "\f004";
+        font-family: "FontAwesome";
+        color: pink;
+    }
 
 .submissions-textarea {
     width: auto;
@@ -706,7 +737,12 @@ footer {
 
 @media only screen and (max-width: 375px) {
 
+    header h1 {
+        font-size: 60px;
+    }
+
     .intro p.head.first {
+        font-size: 25px;
         width: 100%;
     }
 
@@ -767,11 +803,16 @@ footer {
     }
 
     header {
+        border: none;
         min-width: 100%;
+        min-height: 150px;
     }
 
     header h1 {
+        line-height: 150px;
         font-size: 50px;
+        margin: 0;
+
     }
 
     .outer-container {
@@ -793,6 +834,7 @@ footer {
 
     a.daily-prompt-link {
         font-size: 35px;
+        letter-spacing: 1px;
     }
 
     .space.after {
@@ -844,6 +886,10 @@ footer {
     .poll-right p.dates {
         font-size: 8px !important;
         width: 100px;
+    }
+
+    .ended-polls-container div.poll-image {
+        width: 120px;
     }
 
 }
