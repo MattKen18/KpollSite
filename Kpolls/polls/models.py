@@ -21,13 +21,13 @@ class Prompt(models.Model):
     def was_published_recently(self):
         return timezone.now() >= self.pub_date >= timezone.now() - datetime.timedelta(days=1 )
 
-    def to_be_removed(self):
+    def to_be_removed(self): #not really used
         return self.rem_date <= timezone.now()
 
     def get_absolute_url(self):
         return reverse('prompt_detail', kwargs={'slug': self.slug})
 
-    def has_ended(self):
+    def has_ended(self): #not really used
         return self.ended == True
 
 #this model is the choices such as the different idol groups to choose from basesd on the particular prompt

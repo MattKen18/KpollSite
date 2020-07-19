@@ -276,6 +276,59 @@ footer {
     0% {width: 0;}
 }
 
+@media only screen and (max-width: 1024px) {
+
+    header h1 {
+        width: 100%;
+        font-size: 80px ;
+    }
+
+
+    #content-wrapper {
+        padding: 0;
+        width: 100%;
+    }
+
+    .results-container {
+        width: 80%;
+    }
+
+    .vote-percent {
+        line-height: 60px;
+        width: 45px;
+    }
+
+        .vote-percent span {
+            font-size: 15px;
+        }
+
+    .vote-bar-container {
+        position: relative;
+        margin-left: 15px;
+        margin-right: 0;
+    }
+
+    .vote-bar, .vbar {
+        margin: 0;
+        height: 10px;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    .vote-bar-container span {
+        font-size: 8px;
+        position: absolute;
+        left: 5px;
+        top: 80%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+    
+}
+
+
 
 @media only screen and (max-width: 768px) {
 
@@ -376,7 +429,9 @@ footer {
     }
 
     .prompt-name-results {
+        margin-top: 30px;
         font-size: 23px;
+        text-align: center;
     }
 
     li {

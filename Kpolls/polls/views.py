@@ -73,7 +73,6 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Prompt
     template_name = 'polls/results.html'
-    #context_object_name = 'namesandvotes'
 
     def get_queryset(self):
         return Prompt.objects.all()
@@ -107,14 +106,28 @@ def vote(request, slug):
         'error_message': "You didn't make a choice.",
         })
     else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        return HttpResponseRedirect(reverse('polls:results', kwargs={'slug': slug}))
+        #only upvotes if poll has not ended
+        past_prompts = [prompt for prompt in published_polls if prompt.rem_date <= timezone.now()] #re order to show newest first
+        if prompt not in past_prompts: 
+            selected_choice.votes += 1
+            selected_choice.save()
+            return HttpResponseRedirect(reverse('polls:results', kwargs={'slug': slug}))
+        else:
+            return render(request, 'polls/detail.html', {
+            'prompt': prompt,
+            'error_message': "This poll has ended.",
+            })
+            return HttpResponseRedirect(reverse('polls:pollsindex'))
 
 def submissions(request): 
     user_submission = Submissions(user_recommendation=request.POST['usubmissions'])
-    user_submission.save()
+    if  user_submission.__str__() not in [num*' ' for num in range(1000)]:
+        user_submission.save()
+        messages.success(request, 'Thank you for your suggestion. Have a nice day!')
+        return HttpResponseRedirect(reverse('polls:pollsindex'))
+    else:
+        messages.error(request, 'You didn\'t give a suggestion.')
+        return HttpResponseRedirect(reverse('polls:pollsindex'))
 
-    messages.success(request, 'Thank you for your suggestion. Have a nice day!')
-    return HttpResponseRedirect(reverse('polls:pollsindex'))
+    
     
