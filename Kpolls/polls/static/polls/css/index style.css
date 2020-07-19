@@ -492,6 +492,10 @@ footer {
 
 @media only screen and (min-width: 2560px) {
 
+    .poll-right a {
+        line-height: 35px;
+    }
+
     .space {
         min-height: 200px;
     }
@@ -691,10 +695,10 @@ footer {
     }
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 450px) {
 
     .intro p.head.first {
-        width: 80%;
+        width: 85%;
     }
 
     .daily-poll-heading-container {
@@ -781,13 +785,28 @@ footer {
 
         .ended-polls-container p.prompt-name {
             margin: 0;
+            width: 200px;
         }
 }
 
 
 @media only screen and (width: 411px) {
+
+    .ended-polls-container p.prompt-name {
+        width: 200px;
+    }
+
     .intro p.head.first {
         width: 100%;
+    }
+
+    .ended-polls-container div.poll-right {
+        padding-left: 5px;
+    }
+
+    .prompt-name a {
+        letter-spacing: 1px;
+        font-size: 14px;
     }
 }
 
@@ -842,7 +861,7 @@ footer {
         }
 
     p.prompt-name {
-        width: 80%;
+        width: 200px;
     }
 
     .prompt-name a {
@@ -855,6 +874,15 @@ footer {
 
 
 }
+
+@media only screen and (max-width: 360px) {
+
+
+    .ended-polls-container div.poll-right {
+        padding-left: 5px;
+    }
+}
+
 
 @media only screen and (max-width: 320px) {
 
@@ -946,11 +974,13 @@ footer {
 
     .ended-polls-container p.prompt-name a{
         font-size: 12px;
+        line-height: 14px;
     }
 
     .poll-right p.dates {
         font-size: 8px !important;
         width: 100px;
+        padding-left: 5px;
     }
 
     .ended-polls-container div.poll-image {
@@ -958,3 +988,40 @@ footer {
     }
 
 }
+
+@media only screen and (max-width: 280px) {
+
+    .intro p.head.first {
+        font-size: 20px;
+    }
+
+    .intro p.head.second {
+        font-size: 13px;
+    }
+
+    a.daily-prompt-link {
+        font-size: 30px;
+        word-spacing: 2px;
+    }
+
+    .daily-poll-container.right p.start-end-date {
+        font-size: 13px;
+    }
+
+    div.poll-right p.dates {
+        max-width: 45px;
+        min-height: 30px;
+        height: auto;
+        padding-right: 5px;
+    }
+
+    .ended-polls-container p.prompt-name {
+        width: 100px;
+    }
+
+        .ended-polls-container p.prompt-name a {
+            letter-spacing: normal;
+            word-spacing: normal;
+        }
+}
+

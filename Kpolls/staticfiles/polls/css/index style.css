@@ -492,6 +492,10 @@ footer {
 
 @media only screen and (min-width: 2560px) {
 
+    .poll-right a {
+        line-height: 35px;
+    }
+
     .space {
         min-height: 200px;
     }
@@ -549,6 +553,33 @@ footer {
     }
 }
 
+@media only screen and (max-width: 1100px) {
+
+    .intro p.head.first {
+        width: 50%;
+    }
+
+    .daily-poll-container a {
+        font-size: 50px;
+    }
+
+    .outer-container {
+        height: 450px
+    }
+
+    .daily-poll-container.left {
+        width: 50%;
+    }
+
+    .daily-poll-container.right p.start-end-date {
+        font-size: 15px;
+    }
+
+    .poll-right p.dates {
+        letter-spacing: 0;
+    }
+}
+
 
 @media only screen and (max-width: 1024px) {
 
@@ -593,6 +624,22 @@ footer {
     .prompt-name a {
         font-size: 15px;
     }
+
+    .daily-poll-container.right p.start-end-date {
+        font-size: 20px;
+    }
+
+    .poll-image {
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 847px) {
+
+    .ended-polls-container li {
+        width: 75%;
+        height: 160px;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -602,7 +649,6 @@ footer {
 
     .space.after {
         height: 0px;
-
     }
 
     .daily-poll-container.left {
@@ -636,10 +682,23 @@ footer {
     }
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 668px) {
+
+    .daily-poll-container.left {
+        margin-left: auto;
+        margin-right: auto;
+        width: 73%;
+    }
+    a.daily-prompt-link {
+        font-size: 40px;
+        line-height: 40px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
 
     .intro p.head.first {
-        width: 80%;
+        width: 85%;
     }
 
     .daily-poll-heading-container {
@@ -726,14 +785,31 @@ footer {
 
         .ended-polls-container p.prompt-name {
             margin: 0;
+            width: 200px;
         }
 }
 
+
 @media only screen and (width: 411px) {
+
+    .ended-polls-container p.prompt-name {
+        width: 200px;
+    }
+
     .intro p.head.first {
         width: 100%;
     }
+
+    .ended-polls-container div.poll-right {
+        padding-left: 5px;
+    }
+
+    .prompt-name a {
+        letter-spacing: 1px;
+        font-size: 14px;
+    }
 }
+
 
 @media only screen and (max-width: 375px) {
 
@@ -746,8 +822,12 @@ footer {
         width: 100%;
     }
 
-    p.start-end-date {
-        text-align: left;
+    .daily-poll-container.right p.start-end-date {
+        text-align: center;
+        word-spacing: 3px;
+        font-size: 18px;
+        line-height: 25px;
+
     }
 
     .scroll-to-bottom {
@@ -777,19 +857,32 @@ footer {
 
         div.poll-right p.dates {
             font-family: "Raleway";
+
         }
 
     p.prompt-name {
-        width: 80%;
+        width: 200px;
     }
 
     .prompt-name a {
         letter-spacing: 1px;
     }
+
     #submissions {
         width: 100%;
     }
+
+
 }
+
+@media only screen and (max-width: 360px) {
+
+
+    .ended-polls-container div.poll-right {
+        padding-left: 5px;
+    }
+}
+
 
 @media only screen and (max-width: 320px) {
 
@@ -881,11 +974,13 @@ footer {
 
     .ended-polls-container p.prompt-name a{
         font-size: 12px;
+        line-height: 14px;
     }
 
     .poll-right p.dates {
         font-size: 8px !important;
         width: 100px;
+        padding-left: 5px;
     }
 
     .ended-polls-container div.poll-image {
@@ -893,3 +988,40 @@ footer {
     }
 
 }
+
+@media only screen and (max-width: 280px) {
+
+    .intro p.head.first {
+        font-size: 20px;
+    }
+
+    .intro p.head.second {
+        font-size: 13px;
+    }
+
+    a.daily-prompt-link {
+        font-size: 30px;
+        word-spacing: 2px;
+    }
+
+    .daily-poll-container.right p.start-end-date {
+        font-size: 13px;
+    }
+
+    div.poll-right p.dates {
+        max-width: 45px;
+        min-height: 30px;
+        height: auto;
+        padding-right: 5px;
+    }
+
+    .ended-polls-container p.prompt-name {
+        width: 100px;
+    }
+
+        .ended-polls-container p.prompt-name a {
+            letter-spacing: normal;
+            word-spacing: normal;
+        }
+}
+
